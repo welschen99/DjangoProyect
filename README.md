@@ -26,5 +26,15 @@ Script path: Indica la ruta hacia manage.py en tu proyecto, por ejemplo: /ruta/a
 Parameters: Escribe runserver para que PyCharm ejecute el comando py manage.py runserver.
 ```
 
+GITHUB COMMANDS
+```bash
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/welschen99/DjangoProyect.git
+git push -u origin main
+```
+
 ## Django Documents
  - [User Model](https://docs.djangoproject.com/en/2.2/ref/contrib/auth/)
