@@ -1,4 +1,4 @@
-INSTALL django package
+INSTALL ```bash django package```
 
 CREATE
 ```bash
