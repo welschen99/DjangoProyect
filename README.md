@@ -10,10 +10,21 @@ START
 py manage.py runserver 3000 #(PARA QUE CORRA EN EL PUERTO 3000)
 ```
 
-CREATE MODULE
+CREATE MODULE IN DJANGO
 ```bash
 py manage.py startapp blog
 ```
+
+CREATE MIGRATE - bse usa al modificar la estructura del modelo(agregar/eliminar campos, modelos)
+```bash
+py manage.py makemigrations
+```
+
+EJECUTE MIGRATE - despues de ejecutar el makemigrations
+```bash
+py manage.py makemigrations
+```
+
 
 PARA CORRERLO EN PYCHARM SIN PONER COMANDOS
 ```bash
@@ -35,6 +46,25 @@ git branch -M main
 git remote add origin https://github.com/welschen99/DjangoProyect.git
 git push -u origin main
 ```
+
+CREAR EL REQUIREMENTS.TXT
+```bash 
+pip freeze > requirements.txt 
+```
+
+
+DJANGO SHELL
+```bash 
+python manage.py shell
+>> exit()
+```
+
+CREATE SUPERUSER FOR ADMIN
+```bash 
+python manage.py createsuperuser
+```
+
+
 
 ## Django Documents
  - [User Model](https://docs.djangoproject.com/en/2.2/ref/contrib/auth/)
