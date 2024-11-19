@@ -66,7 +66,7 @@ python manage.py createsuperuser
 
 
 Estructura Base de un Proyecto Django
-
+```bash 
 my_project/               # Carpeta raíz del proyecto
 │
 ├── manage.py             # Script para ejecutar comandos Django
@@ -95,7 +95,7 @@ my_project/               # Carpeta raíz del proyecto
     │   ├── models.py     # Define modelos relacionados con esta app.
     │   ├── views.py      # Lógica de vistas.
     │   └── urls.py       # Enrutamiento específico de esta app.
-
+```
 
 ## Django Documents
  - [Django Tutorial](https://cosasdedevs.com/django/)
