@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Editar Tarea{% endblock %}
+
+{% block content %}
+<div class="row">
+     <h1>Editar Tarea</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="title">Título:</label>
+        <input type="text"  id="title"   name="title" value="{{ task.title }}" required>
+        <br>
+        <label for="description">Descripción:</label>
+        <textarea id="description"  name="description" required>{{ task.description }}</textarea>
+        <br>
+        <label for="proyect">Proyecto:</label>
+        <input type="number" id="proyect" name="proyect" value="{{ task.proyect.id }}" required>
+        <br>
+        <button type="submit" class="btn btn-primary mt-2">Guardar Cambios</button>
+        <a href="{% url 'task_list' %}" class="btn btn-secondary mt-2">Cancelar</a>
+    </form>
+</div>
+
+{% endblock %}

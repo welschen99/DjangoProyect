@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog',
-    'bootstrap5',
+    'app.tasks',
+    'django_bootstrap5',
     # 'user',
 ]
 
@@ -57,8 +57,9 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        #'DIRS': [], #        'DIRS': [BASE_DIR / 'templates'],  # Aquí defines el directorio global.
+        'DIRS': [BASE_DIR / 'templates'],
+        'APP_DIRS': True, # Esto habilita los templates por app.
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -85,7 +86,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'DjangoSGM',
+        'NAME': 'Django_SGM',
         'USER': 'postgres',
         'PASSWORD': 'aguw2489',
         'HOST': 'localhost',
