@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}Simple blog{% endblock %}</title>
+    <!--    Load the tag library-->
+    {% load django_bootstrap5 %}
+    <!--    Load CSS and JavaScript-->
+    {% bootstrap_css %}
+    <!--    Display django.contrib.messages as Bootstrap alerts-->
+    {% bootstrap_messages %}
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Registro</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="first_name" class="form-label">Nombre</label>
+            <input type="text" name="first_name" class="form-control" id="first_name" required>
+        </div>
+        <div class="mb-3">
+            <label for="last_name" class="form-label">Apellido</label>
+            <input type="text" name="last_name" class="form-control" id="last_name" required>
+        </div>
+        <div class="mb-3">
+            <label for="username" class="form-label">Nombre de Usuario</label>
+            <input type="text" name="username" class="form-control" id="username" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">EMAIL</label>
+            <input type="email" name="email" class="form-control" id="email" >
+        </div>
+        <div class="mb-3">
+            <label for="password1" class="form-label">Contraseña</label>
+            <input type="password" name="password1" class="form-control" id="password1" required>
+        </div>
+        <div class="mb-3">
+            <label for="password2" class="form-label">Confirmar Contraseña</label>
+            <input type="password" name="password2" class="form-control" id="password2" required>
+        </div>
+        <div class="mb-3">
+            <label for="sector" class="form-label">Sector</label>
+            <input type="text" name="sector" class="form-control" id="sector">
+        </div>
+        <div class="mb-3">
+            <label for="is_superuser" class="form-label">¿Es Admin?</label>
+            <select required name="is_superuser" class="form-control" id="is_superuser">
+                <option value=""></option>
+                <option value="False">No</option>
+                <option value="True">Sí</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Registrar</button>
+    </form>
+</div>
+</body>
+{% bootstrap_javascript %}
+</html>

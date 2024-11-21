@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app.tasks',
+    'app.users',
     'django_bootstrap5',
     # 'user',
 ]
@@ -86,7 +87,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Django_SGM',
+        'NAME': 'DjangoSGM',
         'USER': 'postgres',
         'PASSWORD': 'aguw2489',
         'HOST': 'localhost',
@@ -100,18 +101,28 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
+# AUTH_PASSWORD_VALIDATORS = [
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+#     },
+# ]
+
+#habilitar todas las restricciones para 6 digitos
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'OPTIONS': {
+            'min_length': 6,  # Establecer la longitud mínima a 6
+        }
     },
 ]
 
@@ -137,3 +148,14 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# my_project/settings.py
+
+AUTH_USER_MODEL = 'users.Usuario'  # Cambia 'users' por el nombre de la app donde está el modelo Usuario.
+
+
+# URLs para redirigir después del login y logout
+LOGIN_URL = '/users/login/'  # Asegúrate de que esta URL coincida con la de tu vista de login
+LOGIN_REDIRECT_URL = '/'  # O la URL que prefieras después de un login exitoso
+
+

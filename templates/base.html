@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}Simple blog{% endblock %}</title>
-    <!--    Load the tag library-->
+    <!-- Load the tag library-->
     {% load django_bootstrap5 %}
-    <!--    Load CSS and JavaScript-->
+    <!-- Load CSS and JavaScript-->
     {% bootstrap_css %}
-    <!--    Display django.contrib.messages as Bootstrap alerts-->
+    <!-- Display django.contrib.messages as Bootstrap alerts-->
     {% bootstrap_messages %}
 </head>
 <body>
@@ -28,83 +28,76 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      <!-- Botón para abrir el modal -->
+      <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a>
     </div>
   </div>
 </nav>
 
-
-    <div class="m-5">
-        {% block content %}{% endblock %}
-    </div>
-
-      <!-- Sidebar Widgets Column -->
-      <div class="col-md-12">
-        <!-- Categories Widget -->
-        <div class="card my-4">
-          <h5 class="card-header">Categories</h5>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-lg-6">
-                <ul class="list-unstyled mb-0">
-                  <li>
-                    <a href="#">Web Design</a>
-                  </li>
-                  <li>
-                    <a href="#">HTML</a>
-                  </li>
-                  <li>
-                    <a href="#">Freebies</a>
-                  </li>
-                </ul>
-              </div>
-              <div class="col-lg-6">
-                <ul class="list-unstyled mb-0">
-                  <li>
-                    <a href="#">JavaScript</a>
-                  </li>
-                  <li>
-                    <a href="#">CSS</a>
-                  </li>
-                  <li>
-                    <a href="#">Tutorials</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card my-4">
-          <h5 class="card-header">Side Widget</h5>
-          <div class="card-body">
-            You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
-          </div>
-        </div>
-
+<!-- Modal -->
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="logoutModalLabel">Confirmar Cierre de Sesión</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-    <footer class="py-5 bg-dark">
-        <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Simple Blog {% now "Y" %}</p>
+      <div class="modal-body">
+        ¿Estás seguro de que deseas cerrar sesión?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <form method="post" action="{% url 'logout' %}">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger">Cerrar Sesión</button>
+        </form>
+      </div>
     </div>
-    </footer>
-</body>
+  </div>
+</div>
+
+<div class="m-5">
+  {% block content %}{% endblock %}
+</div>
+
+<!-- Sidebar Widgets Column -->
+<div class="col-md-12">
+  <div class="card my-4">
+    <h5 class="card-header">Categories</h5>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-lg-6">
+          <ul class="list-unstyled mb-0">
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">HTML</a></li>
+            <li><a href="#">Freebies</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-6">
+          <ul class="list-unstyled mb-0">
+            <li><a href="#">JavaScript</a></li>
+            <li><a href="#">CSS</a></li>
+            <li><a href="#">Tutorials</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card my-4">
+    <h5 class="card-header">Side Widget</h5>
+    <div class="card-body">
+      You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+    </div>
+  </div>
+</div>
+
+<footer class="py-5 bg-dark">
+  <div class="container">
+    <p class="m-0 text-center text-white">Copyright &copy; Simple Blog {% now "Y" %}</p>
+  </div>
+</footer>
+
 {% bootstrap_javascript %}
+</body>
 </html>

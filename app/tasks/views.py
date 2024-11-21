@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse,JsonResponse
 from .models import Proyect,Task
 from django.shortcuts import get_object_or_404 #devuelve una pagina 404 si no encuentra
-# from .forms import TaskForm
+from django.contrib.auth.decorators import login_required
 
 def post_list(request):
     return render(request, 'app/tasks/tasks.html', {})
@@ -21,8 +21,7 @@ def task(request,id):
     task = get_object_or_404(Task,id=id)
     return HttpResponse('tarea '+task.title)
 
-
-
+@login_required
 def task_list(request):
     tareas = Task.objects.all()
     return render(request, 'task_list.html', {'tareas': tareas})
@@ -32,6 +31,7 @@ def task_detail(request, pk):
     tarea = get_object_or_404(Task, pk=pk)
     return render(request, 'task_detail.html', {'tarea': tarea})
 
+@login_required
 def task_create(request):
     projects = Proyect.objects.all()  # Obtiene todos los proyectos disponibles
 
@@ -53,6 +53,7 @@ def task_create(request):
             return redirect('task_list')  # Redirige a la lista de tareas después de crear
     return render(request, 'task_create.html', {'projects': projects})
 
+@login_required
 def task_edit(request, pk):
     task = get_object_or_404(Task, pk=pk)
 
@@ -66,6 +67,7 @@ def task_edit(request, pk):
 
     return render(request, 'task_edit.html', {'task': task})
 
+@login_required
 def task_delete(request, pk):
     task = get_object_or_404(Task, pk=pk)
     # Si el método de solicitud es POST, proceder a eliminar

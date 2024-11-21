@@ -27,12 +27,14 @@ class Task(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(default=timezone.now)
     proyect = models.ForeignKey(Proyect, on_delete=models.CASCADE)
+    # from django.contrib.auth.models import User
+    # user = models.ForeignKey(User, on_delete=models.CASCADE)
     # image = models.ImageField(upload_to='task/static/imagenes/', blank=True, null=True)  # Nuevo campo
 
     def set_Codigo(self):
         try:
             # Generar la parte inicial del código con el año actual
-            codigo = 'TASK' + str(timezone.now().year) + '.'
+            codigo = 'TSK' + str(timezone.now().year) + '.'
             # Obtener el id máximo de las tareas existentes
             id_max = Task.objects.aggregate(Max('id'))['id__max']  # Esto obtiene el valor máximo del id
             # Si no hay ninguna tarea en la base de datos, empezar desde 0
@@ -49,3 +51,15 @@ class Task(models.Model):
 
     def __str__(self):
         return self.title + ' - ' + self.proyect.title
+
+
+# TABLA EJEMPLO PARA RELACIONAR DE MUCHOS A MUCHOS
+
+# class Comment(models.Model):
+#     task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name='comments')  # Relación a una tarea
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)  # Usuario que hizo el comentario
+#     content = models.TextField()  # Texto del comentario
+#     created_at = models.DateTimeField(default=timezone.now)
+#
+#     def __str__(self):
+#         return f"Comment by {self.user.username} on {self.task.title}"
